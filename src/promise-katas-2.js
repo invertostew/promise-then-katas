@@ -65,7 +65,15 @@ const dog = () => {
 //
 
 const joke = () => {
-    
+    const question = fetch('jokes', 'question');
+    const answer = fetch('jokes');
+
+    return Promise.all([question, answer])
+        .then(values => {
+            const q = values[0].joke;
+            const a = values[1].answer;
+            return { question: q, answer: a };
+        });
 };
 
 module.exports = {
